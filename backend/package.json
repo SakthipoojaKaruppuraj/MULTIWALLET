@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "bip32": "^5.0.0",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^7.0.1",
+    "cors": "^2.8.6",
+    "ethers": "^6.16.0",
+    "express": "^5.2.1",
+    "tiny-secp256k1": "^2.2.4"
+  }
+}
