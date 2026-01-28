@@ -14,23 +14,18 @@ const bip32 = BIP32Factory(ecc);
 
 app.get("/generate-wallet", async (req, res) => {
   try {
-    // 1️⃣ Mnemonic
     const mnemonic = bip39.generateMnemonic();
-
-    // 2️⃣ Seed
     const seed = bip39.mnemonicToSeedSync(mnemonic);
-
-    // 3️⃣ Root
     const root = bip32.fromSeed(seed);
 
-    // ===== Ethereum =====
+    // Ethereum
     const ethPath = "m/44'/60'/0'/0/0";
     const ethNode = root.derivePath(ethPath);
     const ethPrivateKey =
       "0x" + Buffer.from(ethNode.privateKey).toString("hex");
     const ethWallet = new Wallet(ethPrivateKey);
 
-    // ===== Bitcoin =====
+    // Bitcoin
     const btcPath = "m/44'/0'/0'/0/0";
     const btcNode = root.derivePath(btcPath);
     const btcAddress = bitcoin.payments.p2pkh({
@@ -54,6 +49,6 @@ app.get("/generate-wallet", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Backend running on http://localhost:5000");
-});
+app.listen(5000, () =>
+  console.log("🚀 Backend running on http://localhost:5000")
+);
